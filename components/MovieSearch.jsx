@@ -21,7 +21,8 @@ class MovieSearch extends React.Component {
         this.getSearchInput()
             .then(this.validateSearchInput.bind(this))
             .then(this.fetchMovies.bind(this))
-            .then(this.displayMovies.bind(this));
+            .then(this.displayMovies.bind(this))
+            .catch(this.handleError.bind(this));
     }
     getSearchInput() {
         const value = this.refs.search.value;
@@ -56,11 +57,16 @@ class MovieSearch extends React.Component {
         this.setState({movies: list.results});
     }
 
+    handleError(e) {
+        this.state.error = e.message;
+    }
+
      render() {
         return <div className="container theme-showcase" role="main">
             <div className="jumbotron">
                 <p>Let's search for some movies!</p>
                 <input type="text" placeholder="Movie title" ref="search" id="search"/>
+                <p style="color:red">{this.state.error}</p>
                 <button onClick={this.handleSearch.bind(this)}>Search</button>
             </div>
             <MovieList movies={this.state.movies} />
