@@ -20,7 +20,7 @@
     "babel-preset-react": "*",
     "react": "15.1.0",
     "react-dom": "15.1.0",
-    "webpack": "^1.13.1"
+    "webpack": "^2.2.0"
   },
   "babel": {
     "presets": [
